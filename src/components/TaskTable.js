@@ -20,6 +20,4 @@ const TaskTable = props => {
   )
 }
 
-// () => editTask.bind(event.id)
-
 module.exports = TaskTable;

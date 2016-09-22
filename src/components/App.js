@@ -7,14 +7,7 @@ const App = React.createClass({
 
   getInitialState(){
     return {
-      tasks: [],
-      taskToEdit: {
-        task: '', 
-        start: '',
-        end: '',
-        date: '',
-        id: ''
-      }
+      tasks: []
     }
   },
 
@@ -32,8 +25,9 @@ const App = React.createClass({
   // Read-Parse-Modify-Strigify-Write
 
   componentWillUpdate(nextProps, nextState){
-    console.log('I am nextState in componentWillUpdate: ', nextState)
-    const serializedData = JSON.stringify(this.nextState)
+    console.log('I am nextState in componentWillUpdate: ', nextState[0])
+    const serializedData = JSON.stringify(nextState)
+    console.log('I am the serializedData after stringify: ', serializedData)
     localStorage.savedState = serializedData
   },
 
@@ -68,8 +62,8 @@ const App = React.createClass({
     let stateNabber = this.state.tasks;
     stateNabber = stateNabber.filter((item) => 
       item.id === getId)
-    console.log('I am stateNabber in edit: ', stateNabber)
-    this.setState({
+    console.log('I am stateNabber in edit: ', stateNabber[0])
+    let littleObj = {
       tasksToEdit: {
         task: stateNabber.task, 
         start: stateNabber.start,
@@ -77,7 +71,7 @@ const App = React.createClass({
         date: stateNabber.date,
         id: stateNabber.id
       }
-    })
+    }
   },
 
   render(){
